@@ -8,7 +8,7 @@ import Layout from "./components/Layout";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/portfolio-website"  >
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
