@@ -24,6 +24,10 @@ const Navbar = () => {
           Contact
         </Link>
 
+        <Link to="/github" className="hover:text-blue-400">
+  GitHub
+</Link>
+
         <button
           onClick={toggleTheme}
           className="bg-blue-600 px-4 py-2 rounded-lg"
