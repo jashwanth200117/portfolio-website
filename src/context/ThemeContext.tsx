@@ -1,6 +1,7 @@
 import {
   createContext,
   useContext,
+  useEffect,
   useState,
   type ReactNode,
 } from "react";
@@ -21,11 +22,29 @@ interface ThemeProviderProps {
 export const ThemeProvider = ({
   children,
 }: ThemeProviderProps) => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+
+
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
+    const savedTheme = localStorage.getItem("isDarkMode");
+
+    if (savedTheme !== null) {
+      return JSON.parse(savedTheme);
+    }
+    return true;
+  });
+
 
   const toggleTheme = () => {
     setIsDarkMode((prev) => !prev);
   };
+
+  useEffect(() => {
+    localStorage.setItem(
+      "isDarkMode",
+      JSON.stringify(isDarkMode)
+    );
+  }, [isDarkMode]);
+
 
   return (
     <ThemeContext.Provider
